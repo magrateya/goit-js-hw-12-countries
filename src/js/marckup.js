@@ -21,13 +21,13 @@ function getCountryData(e) {
     if (e.target.value) {
         fetchCountry(refs.inputField.value).then(data => {
         
-            if (data.length > 5) {
+            if (data.length > 10) {
                 refs.countryCardBox.innerHTML = '';
             error({ text: "Занадто багато варіантів. Введіть більш срецифічний запит." }); 
          
         }
         
-            else if (data.length > 2 & data.length < 5) {
+            else if (data.length > 2 & data.length < 10) {
                 refs.countryCardBox.innerHTML = '';
             const cardMarckupList = countryList(data)
             refs.countryCardBox.insertAdjacentHTML('afterbegin', cardMarckupList);
