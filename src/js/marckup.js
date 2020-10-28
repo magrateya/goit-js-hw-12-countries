@@ -21,7 +21,7 @@ function getCountryData(e) {
     if (e.target.value) {
         fetchCountry(refs.inputField.value).then(data => {
             console.log(data);
-            if (data.status === 404 || data.status !== 200) {
+            if (data.status === 404) {
                 refs.countryCardBox.innerHTML = '';
                 info({ text: "Ви ввели неправильний запит!", delay: 2000 });
             }
