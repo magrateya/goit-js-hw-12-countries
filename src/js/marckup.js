@@ -22,22 +22,21 @@ function getCountryData(e) {
         fetchCountry(refs.inputField.value).then(data => {
         
             if (data.length > 10) {
-                refs.countryCardBox.innerHTML = '';
-            error({ text: "Занадто багато варіантів. Введіть більш срецифічний запит." }); 
+            refs.countryCardBox.innerHTML = '';
+            error({ text: "Занадто багато варіантів. Введіть більш срецифічний запит.", delay: 2000 }); 
          
         }
         
             else if (data.length > 2 & data.length < 10) {
-                refs.countryCardBox.innerHTML = '';
+            refs.countryCardBox.innerHTML = '';
             const cardMarckupList = countryList(data)
             refs.countryCardBox.insertAdjacentHTML('afterbegin', cardMarckupList);
            
         }
             else {
-                refs.countryCardBox.innerHTML = '';
+            refs.countryCardBox.innerHTML = '';
             const cardMarckup = countryCard(data[0]);
             refs.countryCardBox.insertAdjacentHTML('afterbegin', cardMarckup);
-            
         }
     });
     }
