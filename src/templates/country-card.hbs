@@ -1,0 +1,12 @@
+<div class="info-box">
+    <h2>{{name}}</h2>
+    <p><b>Capital:</b>{{capital}}</p>
+    <p><b>Population:</b>{{population}}</p>
+    <p><b>Languages:</b></p>
+    <ul>
+        {{#each languages}}
+        <li>{{name}}</li>
+        {{/each}}
+    </ul>
+</div>
+<img src="{{flag}}" alt="flag" width="300">
