@@ -6,7 +6,7 @@ import countryList from '../templates/country-list.hbs';
 import fetchCountry from './fetchCountries.js';
 
 import '@pnotify/core/dist/PNotify.css';
-import { error } from '@pnotify/core';
+import { error, info } from '@pnotify/core';
 import '@pnotify/core/dist/BrightTheme.css';
 
 const refs = {
@@ -20,19 +20,25 @@ refs.inputField.addEventListener('input', debounce(getCountryData, 500));
 function getCountryData(e) {
     if (e.target.value) {
         fetchCountry(refs.inputField.value).then(data => {
-        
-            if (data.length > 10) {
+            console.log(data);
+            if (data.status === 404) {
+                refs.countryCardBox.innerHTML = '';
+                info({ text: "Ви ввели неправильний запит!", delay: 2000 });
+            }
+            
+            else if (data.length > 10) {
             refs.countryCardBox.innerHTML = '';
             error({ text: "Занадто багато варіантів. Введіть більш срецифічний запит.", delay: 2000 }); 
          
         }
         
-            else if (data.length > 2 & data.length < 10) {
+            else if (data.length > 1) {
             refs.countryCardBox.innerHTML = '';
             const cardMarckupList = countryList(data)
             refs.countryCardBox.insertAdjacentHTML('afterbegin', cardMarckupList);
            
-        }
+            }
+          
             else {
             refs.countryCardBox.innerHTML = '';
             const cardMarckup = countryCard(data[0]);
